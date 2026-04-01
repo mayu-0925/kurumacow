@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #f2f2f2;
+  }
+}
+
+@layer utilities {
+  .card-pop {
+    transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+  }
+  .card-pop:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(70, 130, 180, 0.18);
+  }
+  .pop-btn {
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .pop-btn:hover {
+    transform: translateY(-2px);
+  }
+  .pop-btn:active {
+    transform: translateY(0);
+  }
+}

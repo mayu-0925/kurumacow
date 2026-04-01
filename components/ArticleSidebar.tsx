@@ -1,0 +1,93 @@
+import Link from "next/link";
+import { services } from "@/lib/data";
+import type { Article } from "@/lib/types";
+
+export default function ArticleSidebar({ relatedArticles }: { relatedArticles: Article[] }) {
+  return (
+    <aside className="flex flex-col gap-5">
+      {/* アフィリエイトバナー */}
+      <div className="bg-gradient-to-br from-brand-blue-dark to-brand-blue-light rounded-xl p-5 text-center shadow-[0_4px_20px_rgba(70,130,180,0.14)]">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/uploads/2016/04/harrier.png"
+          alt=""
+          className="w-full h-[100px] object-contain rounded-lg mb-3 bg-white/15 p-1"
+        />
+        <h3 className="text-[14px] font-bold text-white mb-2 leading-[1.5]">
+          🚗 カーリース無料一括見積もり
+        </h3>
+        <p className="text-[11px] text-white/88 mb-3 leading-[1.6]">
+          月々定額で新車に乗れる。頭金0円・税金込みの主要サービスを無料で比較
+        </p>
+        <Link
+          href={services[0].affiliateUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block bg-white text-brand-blue-dark font-bold text-[13px] px-4 py-2 rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.12)] hover:-translate-y-0.5 transition"
+        >
+          今すぐ無料で比較する
+        </Link>
+      </div>
+
+      {/* おすすめサービスランキング */}
+      <div className="bg-white border border-[#dde5f0] rounded-xl overflow-hidden shadow-sm">
+        <div className="flex items-center gap-2 px-4 py-3 bg-brand-blue text-white text-[13px] font-bold tracking-wide">
+          🏆 おすすめサービス比較
+        </div>
+        <div className="divide-y divide-[#dde5f0]">
+          {services.map((s, i) => (
+            <div key={s.rank} className="p-3 flex items-center gap-3">
+              <span
+                className={`w-6 h-6 rounded-[6px] flex items-center justify-center text-xs font-bold shrink-0 border ${
+                  i === 0
+                    ? "bg-[rgba(212,166,0,0.12)] border-[#d4a600] text-[#856000]"
+                    : i === 1
+                    ? "bg-[rgba(120,120,120,0.1)] border-[#aaa] text-[#666]"
+                    : "bg-[rgba(160,82,45,0.12)] border-[#a0522d] text-[#a0522d]"
+                }`}
+              >
+                {s.rank}
+              </span>
+              <div className="flex-1 min-w-0">
+                <p className="font-bold text-sm text-gray-900 truncate">{s.name}</p>
+                <p className="text-xs text-gray-500">{s.price}</p>
+              </div>
+              <Link
+                href={s.affiliateUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs px-2 py-1 rounded-lg bg-brand-blue text-white font-bold shrink-0 hover:bg-brand-blue-dark transition"
+              >
+                公式へ
+              </Link>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* 関連記事 */}
+      {relatedArticles.length > 0 && (
+        <div className="bg-white border border-[#dde5f0] rounded-xl overflow-hidden shadow-sm">
+          <div className="flex items-center gap-2 px-4 py-3 bg-brand-blue text-white text-[13px] font-bold tracking-wide">
+            📰 関連記事
+          </div>
+          <div className="divide-y divide-[#dde5f0]">
+            {relatedArticles.map((a) => (
+              <Link
+                key={a.slug}
+                href={`/blog/${a.slug}`}
+                className="flex items-center gap-3 px-4 py-3 hover:bg-[#eef4fb] transition"
+              >
+                <span className="text-xl shrink-0">{a.emoji}</span>
+                <div className="min-w-0">
+                  <p className="text-xs font-bold text-gray-800 line-clamp-2">{a.title}</p>
+                  <p className="text-xs text-gray-400 mt-0.5">{a.publishedAt}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+    </aside>
+  );
+}
