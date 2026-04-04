@@ -1,4 +1,4 @@
-name: 記事自動生成
+name: 記事自動生成 & デプロイ
 
 on:
   schedule:
@@ -15,7 +15,7 @@ permissions:
   contents: write
 
 jobs:
-  generate:
+  generate-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -48,3 +48,15 @@ jobs:
           git add content/articles/
           git diff --staged --quiet || git commit -m "chore: 記事自動生成 $(date '+%Y-%m-%d')"
           git push
+
+      - name: ビルド
+        run: npm run build
+
+      - name: FTP デプロイ (Xserver)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          local-dir: ./out/
