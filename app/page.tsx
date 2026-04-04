@@ -49,32 +49,28 @@ export default function Home() {
               className="text-[clamp(26px,3.2vw,44px)] font-black leading-[1.35] mb-4 text-white"
               style={{ textShadow: "0 2px 8px rgba(0,0,0,0.15)" }}
             >
-              クルマ選びを<br />
-              <span
+              愛車を<span
                 className="text-brand-sky"
                 style={{ textShadow: "0 0 20px rgba(176,224,230,0.6)" }}
-              >
-                スマートに。
-              </span>
-              <br />
-              最新情報で後悔ゼロへ。
+              >高く売って、</span><br />
+              理想の一台へ乗り換えよう。
             </h1>
             <p className="text-white/90 text-[15px] leading-[1.8] mb-7">
-              カーリース・自動車保険・最新モデルレビューまで。
-              <br />あなたのカーライフに役立つ情報を毎日更新中。
+              乗り換え・引越し・免許返納。どのタイミングでも<br />
+              一括査定で最高額を引き出すのがカシコイ選択です。
             </p>
             <div className="flex gap-3 flex-wrap">
               <Link
                 href="/blog"
                 className="pop-btn inline-flex items-center gap-2 bg-white text-brand-blue-dark font-bold text-[15px] px-6 py-3 rounded-lg shadow-[0_4px_16px_rgba(0,0,0,0.15)]"
               >
-                🏆 人気記事を見る
+                🔍 無料で査定額を確認
               </Link>
               <Link
                 href="/ranking"
                 className="pop-btn inline-flex items-center gap-2 bg-transparent text-white font-semibold text-[15px] px-5 py-3 border-2 border-white/50 rounded-lg hover:bg-white/10 transition"
               >
-                📊 サービス比較
+                🆚 買取サービスを比較
               </Link>
             </div>
             {/* Stats */}
@@ -94,32 +90,32 @@ export default function Home() {
 
           {/* ビジュアルパネル */}
           <div className="hidden md:block bg-white/95 border border-white/80 rounded-2xl p-5 shadow-[0_8px_40px_rgba(0,0,0,0.15)]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/uploads/2016/04/cover.png"
-              alt=""
-              className="w-full rounded-lg mb-3 object-cover"
-              style={{ maxHeight: 80 }}
-            />
+            <div className="bg-gradient-to-r from-brand-blue-dark to-brand-blue-light rounded-lg px-4 py-3 mb-3 flex items-center gap-2">
+              <span className="text-lg">🔍</span>
+              <div>
+                <p className="text-white font-bold text-sm leading-tight">愛車の買取相場を無料チェック</p>
+                <p className="text-white/75 text-[11px]">最大45社比較・入力1分・完全無料</p>
+              </div>
+            </div>
             {[
               {
-                img: "/uploads/2017/08/change_car.jpg",
-                title: "カーリース比較 2025",
-                desc: "6社の料金・条件を一覧比較",
+                emoji: "💰",
+                title: "一括査定で高く売る方法",
+                desc: "複数社比較で平均4万円UP",
                 badge: "NEW",
                 blue: false,
               },
               {
-                img: "/uploads/2016/06/loan.jpg",
-                title: "自動車保険 一括見積もり",
-                desc: "最安値を見つけて年間3万円節約",
+                emoji: "🆚",
+                title: "下取りvs買取 どっちがお得？",
+                desc: "ディーラー下取りで損しないために",
                 badge: "PR",
                 blue: true,
               },
               {
-                img: "/uploads/2016/10/rx450h.jpg",
-                title: "2025年SUVランキングTOP10",
-                desc: "コスパ・走行性能・快適性を評価",
+                emoji: "📅",
+                title: "乗り換えベストタイミング",
+                desc: "車検前・3年・5年の損得を解説",
                 badge: "人気",
                 blue: true,
               },
@@ -128,9 +124,8 @@ export default function Home() {
                 key={item.title}
                 className="bg-[#eef4fb] border border-[#dde5f0] rounded-[10px] p-3.5 mb-2.5 last:mb-0 flex gap-3 items-center hover:border-[rgba(70,130,180,0.3)] hover:shadow-sm transition"
               >
-                <div className="w-11 h-11 rounded-[10px] overflow-hidden shrink-0">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={item.img} alt="" className="w-full h-full object-cover" />
+                <div className="w-11 h-11 rounded-[10px] bg-brand-blue/10 border border-brand-blue/20 flex items-center justify-center text-xl shrink-0">
+                  {item.emoji}
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-[13px] font-bold text-gray-900 mb-0.5 truncate">
@@ -170,10 +165,10 @@ export default function Home() {
               />
               <div>
                 <h3 className="text-lg font-bold text-gray-900 mb-2 leading-[1.4]">
-                  🔥 今月のおすすめ：カーリース無料一括比較
+                  🔥 今すぐ確認：あなたの車、いくらで売れる？
                 </h3>
                 <p className="text-sm text-gray-500 mb-4 leading-[1.7]">
-                  頭金0円・税金コミで月々定額。主要サービスを横断比較して、あなたに最適なプランが見つかります。最短3分で無料見積もり完了。
+                  乗り換えを考えているなら、まず今の車の買取相場を確認しましょう。一括査定なら最大45社を比較でき、ディーラー下取りより平均4万円以上高く売れた実績があります。
                 </p>
                 <div className="flex gap-3 flex-wrap">
                   <Link
@@ -182,13 +177,13 @@ export default function Home() {
                     rel="noopener noreferrer"
                     className="pop-btn inline-flex items-center gap-2 bg-gradient-to-br from-brand-blue-dark to-brand-blue-light text-white font-bold text-sm px-5 py-2.5 rounded-lg shadow-[0_3px_14px_rgba(70,130,180,0.18)]"
                   >
-                    📊 無料で一括比較する
+                    🔍 無料で査定額を調べる
                   </Link>
                   <Link
                     href="/ranking"
                     className="pop-btn inline-flex items-center gap-2 bg-gradient-to-br from-brand-red to-red-400 text-white font-bold text-sm px-5 py-2.5 rounded-lg shadow-[0_3px_14px_rgba(178,34,34,0.18)]"
                   >
-                    🏆 人気ランキングを見る
+                    🏆 買取サービスを比較する
                   </Link>
                 </div>
               </div>
@@ -233,12 +228,12 @@ export default function Home() {
               className="w-full h-[110px] object-contain rounded-lg mb-3.5 bg-white/15 p-1"
             />
             <h3 className="text-[15px] font-bold text-white mb-2 leading-[1.5]">
-              🚗 カーリース
+              🔍 愛車の買取相場を
               <br />
-              無料一括見積もり
+              今すぐ無料チェック
             </h3>
             <p className="text-[12px] text-white/88 mb-3.5 leading-[1.6]">
-              月々定額で新車に乗れる。頭金0円・税金込みの主要サービスを無料で比較
+              乗り換え前に必ず査定を。一括比較で高く売って、乗り換えコストを最小化
             </p>
             <Link
               href={services[0].affiliateUrl}
@@ -246,7 +241,7 @@ export default function Home() {
               rel="noopener noreferrer"
               className="pop-btn inline-block bg-white text-brand-blue-dark font-bold text-[13px] px-5 py-2.5 rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.12)]"
             >
-              今すぐ無料で比較する
+              今すぐ無料で査定する
             </Link>
           </div>
 

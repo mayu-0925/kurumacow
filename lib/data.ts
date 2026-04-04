@@ -1,63 +1,63 @@
 import type { ServiceItem, SiteAlert, HeroStat, HowToStep } from "./types";
 
 // ─────────────────────────────────────────────
-// アフィリエイトサービス定義
+// アフィリエイトサービス定義（車買取・乗り換え特化）
 // ※ affiliateUrl は実際のA8.net等のリンクに差し替えてください
 // ─────────────────────────────────────────────
 export const services: ServiceItem[] = [
   {
     rank: 1,
-    name: "定額カルモくん",
-    label: "カーリース月額最安クラス",
+    name: "MOTA車買取",
+    label: "一括査定 最大45社比較",
     description:
-      "頭金0円・税金コミ・車検コミで月々定額。全国対応で最短翌月から乗れる人気No.1カーリース。",
-    price: "月々 ¥19,800〜",
-    point: "審査最短即日・頭金0円",
+      "入力1分・翌日には最高額の1社だけから連絡が来るシステム。複数業者からの電話が嫌な人に最適。",
+    price: "無料で最高額を確認",
+    point: "翌日1社のみ連絡・電話ラッシュなし",
     tags: [
-      { text: "🚗 頭金0円", variant: "cool" },
-      { text: "💰 月々¥19,800〜", variant: "green" },
-      { text: "🎁 車検・税金コミ", variant: "warm" },
+      { text: "📱 入力1分", variant: "cool" },
+      { text: "📞 1社のみ連絡", variant: "green" },
+      { text: "🆚 最大45社比較", variant: "warm" },
     ],
-    reward: { label: "最大", value: "50,000円キャッシュバック" },
-    affiliateUrl: "https://example.com/carlmo", // ← 実際のアフィリエイトURLに差し替え
-    ctaText: "今すぐ無料で審査する",
+    reward: { label: "平均", value: "43,000円高く売れた" },
+    affiliateUrl: "https://example.com/mota", // ← 実際のアフィリエイトURLに差し替え
+    ctaText: "無料で最高額を調べる",
     ctaColor: "bg-brand-blue hover:bg-brand-blue-dark",
     badgeGradient: "from-brand-blue-dark to-brand-blue-light",
   },
   {
     rank: 2,
-    name: "保険スクエアbang!",
-    label: "自動車保険 一括見積もり",
-    description:
-      "最大20社以上を一括比較。1分入力で保険料を最大50%節約できる可能性あり。",
-    price: "無料で見積もり比較",
-    point: "20社以上を一括比較",
-    tags: [
-      { text: "🛡️ 20社以上比較", variant: "cool" },
-      { text: "💰 最大50%節約", variant: "green" },
-      { text: "⚡ 1分で入力完了", variant: "warm" },
-    ],
-    reward: { label: "保険料", value: "最大50%節約" },
-    affiliateUrl: "https://example.com/hoken-bang", // ← 実際のアフィリエイトURLに差し替え
-    ctaText: "無料で保険料を比較する",
-    ctaColor: "bg-brand-red hover:bg-red-800",
-    badgeGradient: "from-brand-red to-red-400",
-  },
-  {
-    rank: 3,
     name: "ガリバー 無料査定",
-    label: "中古車・下取り 無料一括査定",
+    label: "中古車買取 累計実績No.1",
     description:
-      "全国4,000社以上の業者が競い合う。最大200万円高く売れた実績あり。",
+      "全国700店舗以上のガリバーが高額査定。即日現金化も可能で、しつこい営業なし。乗り換えの第一歩におすすめ。",
     price: "査定は完全無料",
-    point: "最大30社から一括査定",
+    point: "即日査定・全国対応",
     tags: [
-      { text: "🏆 最大30社査定", variant: "cool" },
+      { text: "🏆 買取実績No.1", variant: "cool" },
       { text: "💴 完全無料", variant: "green" },
       { text: "📞 電話なしも可", variant: "gray" },
     ],
     reward: { label: "最大", value: "200万円UP実績" },
     affiliateUrl: "https://example.com/gulliver", // ← 実際のアフィリエイトURLに差し替え
+    ctaText: "今すぐ無料で査定する",
+    ctaColor: "bg-brand-red hover:bg-red-800",
+    badgeGradient: "from-brand-red to-red-400",
+  },
+  {
+    rank: 3,
+    name: "楽天Car買取",
+    label: "楽天ポイントが貯まる買取",
+    description:
+      "全国3,000社以上が入札する楽天の買取オークション。楽天ポイントも最大5,000pt付与で乗り換えがお得に。",
+    price: "査定・手続きすべて無料",
+    point: "楽天ポイント最大5,000pt",
+    tags: [
+      { text: "🏆 全国3,000社", variant: "cool" },
+      { text: "🎁 ポイント付与", variant: "warm" },
+      { text: "💴 完全無料", variant: "green" },
+    ],
+    reward: { label: "最大", value: "楽天P 5,000pt" },
+    affiliateUrl: "https://example.com/rakuten-car", // ← 実際のアフィリエイトURLに差し替え
     ctaText: "無料で査定額を調べる",
     ctaColor: "bg-brand-warm hover:bg-amber-800",
     badgeGradient: "from-brand-warm to-amber-500",
@@ -65,49 +65,49 @@ export const services: ServiceItem[] = [
 ];
 
 // ─────────────────────────────────────────────
-// サイトアラートバー
+// サイトアラートバー（ティッカー）
 // ─────────────────────────────────────────────
 export const siteAlert: SiteAlert = {
   message:
-    "🎉 今なら定額カルモくん初月無料キャンペーン実施中！カーリース比較はこちら",
-  linkText: "詳細を見る",
-  linkHref: "https://example.com/carlmo",
+    "🔥 愛車の買取相場を無料チェック！乗り換え前に必ず査定を。一括比較で高く売れる",
+  linkText: "今すぐ無料査定 →",
+  linkHref: "https://example.com/mota",
 };
 
 // ─────────────────────────────────────────────
 // ヒーロー統計
 // ─────────────────────────────────────────────
 export const heroStats: HeroStat[] = [
-  { value: "3", label: "比較サービス", color: "text-brand-blue" },
-  { value: "毎月", label: "情報更新", color: "text-green-500" },
-  { value: "無料", label: "診断サービス", color: "text-brand-red" },
+  { value: "最大45社", label: "一括査定比較", color: "text-brand-sky" },
+  { value: "完全無料", label: "査定・手続き", color: "text-brand-sky" },
+  { value: "最短即日", label: "現金化も可能", color: "text-brand-sky" },
 ];
 
 // ─────────────────────────────────────────────
-// 車選び3ステップ
+// 乗り換え3ステップ
 // ─────────────────────────────────────────────
 export const howToSteps: HowToStep[] = [
   {
     step: 1,
-    emoji: "🏠",
-    title: "使い方・頻度を確認",
-    description: "通勤・レジャー・家族利用など、使い方によって最適な車種やリース条件が変わります。",
+    emoji: "📋",
+    title: "無料査定で相場を確認",
+    description: "まず今の車がいくらで売れるか把握することが乗り換え成功の第一歩です。",
     bgColor: "bg-blue-50",
     stepColor: "bg-brand-blue text-white",
   },
   {
     step: 2,
-    emoji: "💰",
-    title: "予算・月額を決める",
-    description: "頭金・月額・維持費まで含めた総コストで比較するのが賢い選び方です。",
+    emoji: "🆚",
+    title: "複数社で比較する",
+    description: "1社だけだと損するケースがほとんど。一括査定で最高額の業者を見つけましょう。",
     bgColor: "bg-sky-50",
     stepColor: "bg-brand-blue-dark text-white",
   },
   {
     step: 3,
-    emoji: "📊",
-    title: "サービスを比較する",
-    description: "カーリース・保険・査定を一括比較して、あなたに最適なプランを見つけましょう。",
+    emoji: "🚗",
+    title: "売却して新しい車へ",
+    description: "高く売った分を頭金にすれば、乗り換えコストを大幅に抑えられます。",
     bgColor: "bg-indigo-50",
     stepColor: "bg-indigo-600 text-white",
   },

@@ -9,9 +9,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr] gap-12 mb-10">
           {/* Brand */}
           <div>
-            <p className="text-xl font-black text-white mb-3 tracking-wide">
-              Kuruma<span className="text-brand-sky">Cow</span>
-            </p>
+            <div className="flex items-center gap-2 mb-3">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/logo.png" alt="KurumaCow" className="w-8 h-8 object-contain" />
+              <p className="text-xl font-black text-white tracking-wide">
+                Kuruma<span className="text-brand-sky">Cow</span>
+              </p>
+            </div>
             <p className="text-[13px] text-white/60 leading-relaxed max-w-xs">
               自動車専門のアフィリエイトメディア。カーリース・自動車保険の比較から最新モデルのレビューまで、クルマ選びに役立つ情報をお届けします。
             </p>

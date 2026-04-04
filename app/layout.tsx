@@ -11,9 +11,9 @@ const BASE_URL = "https://kurumacow.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
-  title: { default: "KurumaCow｜カーリース・自動車保険・中古車を比較", template: "%s｜KurumaCow" },
-  description: "カーリース・自動車保険・中古車査定サービスを徹底比較。あなたのカーライフに最適なサービスが見つかります。",
-  keywords: ["カーリース", "自動車保険", "中古車査定", "車比較", "カーライフ"],
+  title: { default: "KurumaCow｜車の買取・乗り換えで損しないための比較メディア", template: "%s｜KurumaCow" },
+  description: "車の買取・乗り換えを考えているあなたへ。ガリバー・MOTA・楽天Carなど主要買取サービスを徹底比較。一括査定で愛車を高く売る方法を解説します。",
+  keywords: ["車買取", "車の乗り換え", "一括査定", "高く売る", "ガリバー", "MOTA車買取", "中古車買取", "下取り 比較"],
   robots: { index: true, follow: true },
   openGraph: {
     type: "website",

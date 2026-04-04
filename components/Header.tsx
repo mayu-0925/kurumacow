@@ -17,8 +17,9 @@ export default function Header() {
       <div className="max-w-[1280px] mx-auto px-7 flex items-center justify-between h-[72px]">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 no-underline">
-          <div className="w-11 h-11 rounded-[10px] bg-gradient-to-br from-brand-blue-dark to-brand-blue-light flex items-center justify-center text-[22px] shadow-[0_2px_10px_rgba(70,130,180,0.18)]">
-            🐄
+          <div className="w-11 h-11 rounded-[10px] overflow-hidden shadow-[0_2px_10px_rgba(70,130,180,0.18)]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo.png" alt="KurumaCow" className="w-full h-full object-contain" />
           </div>
           <div className="flex items-center gap-2">
             <span className="text-xl font-black text-gray-900 tracking-wide">
@@ -45,7 +46,7 @@ export default function Header() {
             href="/ranking"
             className="ml-2 px-4 py-2 rounded-md bg-gradient-to-br from-brand-blue-dark to-brand-blue-light text-white text-[13px] font-bold shadow-[0_2px_10px_rgba(70,130,180,0.18)] hover:opacity-90 transition"
           >
-            無料見積もり →
+            無料で査定する →
           </Link>
         </nav>
 
@@ -78,7 +79,7 @@ export default function Header() {
             onClick={() => setOpen(false)}
             className="mt-1 py-2.5 text-center rounded-lg bg-gradient-to-br from-brand-blue-dark to-brand-blue-light text-white text-sm font-bold"
           >
-            無料見積もり →
+            無料で査定する →
           </Link>
         </div>
       )}

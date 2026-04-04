@@ -19,13 +19,14 @@ const ARTICLES_DIR = path.join(process.cwd(), "content/articles");
 // ──────────────────────────────────────────────
 // システムプロンプト
 // ──────────────────────────────────────────────
-const SYSTEM_PROMPT = `あなたは自動車業界に10年以上携わるカーライフ専門家です。
-カーリース・自動車保険・新車・中古車・EV・維持費節約のすべてに精通しており、
-読者が最適な選択ができるよう、正確でわかりやすい情報を提供します。
+const SYSTEM_PROMPT = `あなたは自動車業界に10年以上携わる中古車・車買取の専門家です。
+車の売却・乗り換え・査定・買取サービスの比較に精通しており、
+読者が愛車を最高額で売却して満足のいく乗り換えができるよう、正確でわかりやすい情報を提供します。
 
 【ターゲット読者】
-車に関する購入・契約・乗り換えを具体的に検討しているユーザー。
-すでに「何かしらの行動をとろう」という意思があり、「どのサービス・どの車種にするか」を決める段階にある。
+車の乗り換えを具体的に検討しているユーザー。
+「今の車をできるだけ高く売りたい」「どの買取業者がいいか知りたい」「乗り換えで損したくない」という意思があり、
+一括査定サービスへの申し込みを決める段階にある。
 
 【ライティング方針】
 - 読者はすでに行動意思がある前提で書く
@@ -99,7 +100,7 @@ ${serviceList}
   "slug": "記事のURLスラッグ（英小文字・ハイフン区切り）",
   "title": "記事タイトル（32文字以内・キーワードを含む）",
   "excerpt": "記事の要約（60文字以内・検索結果に表示される説明文）",
-  "category": "カテゴリ名（カーリース / 自動車保険 / SUV / 軽自動車 / EV / ミニバン / 節約術 / 中古車 のいずれか）",
+  "category": "カテゴリ名（車買取 / 乗り換え / 査定コツ / 一括査定 / 軽自動車 / SUV / EV / 節約術 のいずれか）",
   "emoji": "記事内容に合う絵文字1つ",
   "publishedAt": "${today}",
   "content": [
@@ -177,8 +178,8 @@ async function generateArticle(topicIndex: number): Promise<void> {
   console.log(`   カテゴリ : ${article.category}`);
   console.log(`   本文ブロック数: ${(article.content as unknown[]).length}`);
   console.log(`\n次のステップ:`);
-  console.log(`  npx tsx scripts/post-to-wp.ts ${slug}`);
-  console.log(`  または: npm run post -- ${slug}`);
+  console.log(`  npm run build  → ビルド確認`);
+  console.log(`  git add content/articles/${slug}.json && git commit -m "add article" && git push`);
 }
 
 // エントリポイント

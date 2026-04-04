@@ -4,8 +4,8 @@ import { services } from "@/lib/data";
 import { currentYearMonth } from "@/lib/date";
 
 export const metadata: Metadata = {
-  title: "サービスランキング",
-  description: "カーリース・自動車保険・中古車査定サービスを徹底比較。2025年最新ランキングをチェック。",
+  title: "車買取サービス比較ランキング",
+  description: "ガリバー・MOTA車買取・楽天Car買取など主要買取サービスを徹底比較。乗り換え前に一括査定で最高額を引き出す方法を解説。",
 };
 
 export default function RankingPage() {
@@ -13,8 +13,8 @@ export default function RankingPage() {
     <>
       <div className="bg-gradient-to-r from-brand-blue-dark to-brand-blue text-white py-10 px-4">
         <div className="max-w-5xl mx-auto text-center">
-          <h1 className="text-2xl md:text-3xl font-black mb-2">🏆 おすすめサービス比較ランキング</h1>
-          <p className="text-white/80 text-sm">{currentYearMonth()} 最新版 ・ 毎月更新</p>
+          <h1 className="text-2xl md:text-3xl font-black mb-2">🏆 車買取サービス比較ランキング</h1>
+          <p className="text-white/80 text-sm">{currentYearMonth()} 最新版 ・ 乗り換え前に必ずチェック</p>
         </div>
       </div>
 
