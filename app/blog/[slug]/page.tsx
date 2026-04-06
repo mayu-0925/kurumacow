@@ -13,14 +13,27 @@ export async function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
 }
 
+const BASE_URL = "https://kurumacow.com";
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const article = getArticleBySlug(slug);
   if (!article) return {};
+  const url = `${BASE_URL}/blog/${slug}`;
   return {
     title: article.title,
     description: article.excerpt,
-    openGraph: { title: article.title, description: article.excerpt },
+    alternates: { canonical: url },
+    openGraph: {
+      title: article.title,
+      description: article.excerpt,
+      url,
+      type: "article",
+      publishedTime: article.publishedAt,
+      siteName: "KurumaCow",
+      images: [{ url: `${BASE_URL}/logo.png`, width: 512, height: 512 }],
+    },
+    twitter: { card: "summary", title: article.title, description: article.excerpt },
   };
 }
 
@@ -34,8 +47,29 @@ export default async function ArticlePage({ params }: Props) {
     .filter((a) => a.slug !== slug && a.category === article.category)
     .slice(0, 4);
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.title,
+    description: article.excerpt,
+    datePublished: article.publishedAt,
+    dateModified: article.publishedAt,
+    url: `${BASE_URL}/blog/${slug}`,
+    image: `${BASE_URL}/logo.png`,
+    publisher: {
+      "@type": "Organization",
+      name: "KurumaCow",
+      logo: { "@type": "ImageObject", url: `${BASE_URL}/logo.png` },
+    },
+  };
+
   return (
-    <div className="max-w-5xl mx-auto px-4 py-10">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <div className="max-w-5xl mx-auto px-4 py-10">
       {/* パンくず */}
       <nav className="text-xs text-gray-400 mb-6 flex gap-1 flex-wrap">
         <Link href="/" className="hover:text-brand-blue">ホーム</Link>
@@ -72,6 +106,7 @@ export default async function ArticlePage({ params }: Props) {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }
