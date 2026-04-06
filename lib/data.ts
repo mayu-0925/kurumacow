@@ -18,7 +18,7 @@ export const services: ServiceItem[] = [
       { text: "🆚 最大20社が入札", variant: "green" },
       { text: "📞 鬼電なし※", variant: "warm" },
     ],
-    reward: { label: "平均", value: "43,000円高く売れた※" },
+    reward: { label: "実績", value: "ディーラー下取りより高値" },
     affiliateUrl: "https://example.com/mota", // ← 実際のアフィリエイトURLに差し替え
     ctaText: "無料で概算査定額を調べる",
     ctaColor: "bg-brand-blue hover:bg-brand-blue-dark",

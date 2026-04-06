@@ -101,7 +101,7 @@ export default function Home() {
               {
                 emoji: "💰",
                 title: "一括査定で高く売る方法",
-                desc: "複数社比較で平均4万円UP",
+                desc: "複数社比較でディーラー下取りより高値",
                 badge: "NEW",
                 blue: false,
               },
@@ -168,9 +168,8 @@ export default function Home() {
                   🔥 今すぐ確認：愛車の概算査定額はいくら？
                 </h3>
                 <p className="text-sm text-gray-500 mb-3 leading-[1.7]">
-                  乗り換えを考えているなら、まず今の車の概算査定額を確認しましょう。最大20社がWEB上で入札する3枠争奪戦で、ディーラー下取りより高値で売ろう。平均43,000円高く売れた実績あり※。
+                  乗り換えを考えているなら、まず今の車の概算査定額を確認しましょう。最大20社がWEB上で入札する3枠争奪戦で、ディーラー下取りより高値で売れた実績が多数あります。
                 </p>
-                <p className="text-xs text-gray-400 mb-3">※MOTA実施アンケートより。回答数3,645件（回答期間：2023年6月〜2024年5月）</p>
                 <div className="flex gap-3 flex-wrap">
                   <Link
                     href={services[0].affiliateUrl}
