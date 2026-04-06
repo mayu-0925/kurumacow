@@ -2,8 +2,8 @@ name: 記事自動生成 & デプロイ
 
 on:
   schedule:
-    # 毎週月曜 9:00 JST (= 0:00 UTC) に実行
-    - cron: "0 0 * * 1"
+    # 毎日 9:00 JST (= 0:00 UTC) に実行
+    - cron: "0 0 * * *"
   workflow_dispatch:
     inputs:
       topic_index:
@@ -35,7 +35,13 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
-          INDEX=${{ github.event.inputs.topic_index || '0' }}
+          # 手動実行時は指定インデックス、自動実行時は経過日数でローテーション
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            INDEX=${{ github.event.inputs.topic_index || '0' }}
+          else
+            INDEX=$(( ($(date +%s) / 86400) % 25 ))
+          fi
+          echo "使用トピックインデックス: $INDEX"
           npx tsx scripts/generate-article.ts $INDEX
 
       - name: 変更をコミット・プッシュ

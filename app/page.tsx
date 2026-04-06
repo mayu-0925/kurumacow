@@ -165,11 +165,12 @@ export default function Home() {
               />
               <div>
                 <h3 className="text-lg font-bold text-gray-900 mb-2 leading-[1.4]">
-                  🔥 今すぐ確認：あなたの車、いくらで売れる？
+                  🔥 今すぐ確認：愛車の概算査定額はいくら？
                 </h3>
-                <p className="text-sm text-gray-500 mb-4 leading-[1.7]">
-                  乗り換えを考えているなら、まず今の車の買取相場を確認しましょう。一括査定なら最大45社を比較でき、ディーラー下取りより平均4万円以上高く売れた実績があります。
+                <p className="text-sm text-gray-500 mb-3 leading-[1.7]">
+                  乗り換えを考えているなら、まず今の車の概算査定額を確認しましょう。最大20社がWEB上で入札する3枠争奪戦で、ディーラー下取りより高値で売ろう。平均43,000円高く売れた実績あり※。
                 </p>
+                <p className="text-xs text-gray-400 mb-3">※MOTA実施アンケートより。回答数3,645件（回答期間：2023年6月〜2024年5月）</p>
                 <div className="flex gap-3 flex-wrap">
                   <Link
                     href={services[0].affiliateUrl}
@@ -177,7 +178,7 @@ export default function Home() {
                     rel="noopener noreferrer"
                     className="pop-btn inline-flex items-center gap-2 bg-gradient-to-br from-brand-blue-dark to-brand-blue-light text-white font-bold text-sm px-5 py-2.5 rounded-lg shadow-[0_3px_14px_rgba(70,130,180,0.18)]"
                   >
-                    🔍 無料で査定額を調べる
+                    🔍 無料で概算査定額を調べる
                   </Link>
                   <Link
                     href="/ranking"
@@ -228,13 +229,14 @@ export default function Home() {
               className="w-full h-[110px] object-contain rounded-lg mb-3.5 bg-white/15 p-1"
             />
             <h3 className="text-[15px] font-bold text-white mb-2 leading-[1.5]">
-              🔍 愛車の買取相場を
+              🔍 愛車の概算査定額を
               <br />
               今すぐ無料チェック
             </h3>
             <p className="text-[12px] text-white/88 mb-3.5 leading-[1.6]">
-              乗り換え前に必ず査定を。一括比較で高く売って、乗り換えコストを最小化
+              最大20社がWEB上で入札。数十社からの電話ラッシュなし※で概算査定額がわかる
             </p>
+            <p className="text-[10px] text-white/60 mb-3">※最多で上位3社からの電話はあります</p>
             <Link
               href={services[0].affiliateUrl}
               target="_blank"

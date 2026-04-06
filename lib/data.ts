@@ -8,19 +8,19 @@ export const services: ServiceItem[] = [
   {
     rank: 1,
     name: "MOTA車買取",
-    label: "一括査定 最大45社比較",
+    label: "一括査定 最大20社がWEB上で入札",
     description:
-      "入力1分・翌日には最高額の1社だけから連絡が来るシステム。複数業者からの電話が嫌な人に最適。",
-    price: "無料で最高額を確認",
-    point: "翌日1社のみ連絡・電話ラッシュなし",
+      "入力1分・翌日には上位3社から連絡が来るシステム。数十社からの電話ラッシュなし※最多で上位3社からの電話はあります。",
+    price: "無料で概算査定額を確認",
+    point: "最大20社がWEB上で入札・3枠争奪戦",
     tags: [
       { text: "📱 入力1分", variant: "cool" },
-      { text: "📞 1社のみ連絡", variant: "green" },
-      { text: "🆚 最大45社比較", variant: "warm" },
+      { text: "🆚 最大20社が入札", variant: "green" },
+      { text: "📞 鬼電なし※", variant: "warm" },
     ],
-    reward: { label: "平均", value: "43,000円高く売れた" },
+    reward: { label: "平均", value: "43,000円高く売れた※" },
     affiliateUrl: "https://example.com/mota", // ← 実際のアフィリエイトURLに差し替え
-    ctaText: "無料で最高額を調べる",
+    ctaText: "無料で概算査定額を調べる",
     ctaColor: "bg-brand-blue hover:bg-brand-blue-dark",
     badgeGradient: "from-brand-blue-dark to-brand-blue-light",
   },
@@ -69,8 +69,8 @@ export const services: ServiceItem[] = [
 // ─────────────────────────────────────────────
 export const siteAlert: SiteAlert = {
   message:
-    "🔥 愛車の買取相場を無料チェック！乗り換え前に必ず査定を。一括比較で高く売れる",
-  linkText: "今すぐ無料査定 →",
+    "🔥 愛車の概算査定額を無料チェック！乗り換え前に必ず査定を。最大20社がWEB上で入札",
+  linkText: "今すぐ無料で確認 →",
   linkHref: "https://example.com/mota",
 };
 
