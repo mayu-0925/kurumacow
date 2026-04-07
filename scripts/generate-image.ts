@@ -48,25 +48,24 @@ export async function generateArticleImage(
     const prompt = buildPrompt(title, category);
     console.log(`🎨 サムネイル生成中: ${slug}`);
 
-    const response = await ai.models.generateImages({
-      model: "imagen-3.0-generate-002",
-      prompt,
+    const response = await ai.models.generateContent({
+      model: "gemini-2.5-flash-image",
+      contents: prompt,
       config: {
-        numberOfImages: 1,
-        aspectRatio: "16:9",
-        outputMimeType: "image/jpeg",
+        responseModalities: ["IMAGE"],
       },
     });
 
-    const imageBytes = response.generatedImages?.[0]?.image?.imageBytes;
-    if (!imageBytes) {
+    const parts = response.candidates?.[0]?.content?.parts ?? [];
+    const imagePart = parts.find((p) => p.inlineData?.mimeType?.startsWith("image/"));
+    if (!imagePart?.inlineData?.data) {
       console.warn("⚠️  画像データが取得できませんでした（スキップ）");
       return null;
     }
 
     fs.mkdirSync(IMAGES_DIR, { recursive: true });
     const outputPath = path.join(IMAGES_DIR, `${slug}.jpg`);
-    fs.writeFileSync(outputPath, Buffer.from(imageBytes as string, "base64"));
+    fs.writeFileSync(outputPath, Buffer.from(imagePart.inlineData.data, "base64"));
 
     const imageUrl = `/images/articles/${slug}.jpg`;
     console.log(`✅ サムネイル保存完了: public/images/articles/${slug}.jpg`);
