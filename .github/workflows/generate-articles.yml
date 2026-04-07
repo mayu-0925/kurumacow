@@ -35,11 +35,19 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
-          # 手動実行時は指定インデックス、自動実行時は経過日数でローテーション
+          TODAY=$(date -u '+%Y-%m-%d')
+
+          # 手動実行時は指定インデックス、自動実行時は既存記事数ベースでローテーション
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             INDEX=${{ github.event.inputs.topic_index || '0' }}
           else
-            INDEX=$(( ($(date +%s) / 86400) % 25 ))
+            # 今日すでに記事が生成済みならスキップ
+            if grep -rl "\"publishedAt\": \"$TODAY\"" content/articles/ 2>/dev/null | grep -q .; then
+              echo "⏭️ 今日（$TODAY）の記事はすでに生成済みです。スキップします。"
+              exit 0
+            fi
+            ARTICLE_COUNT=$(ls content/articles/*.json 2>/dev/null | wc -l | tr -d ' ')
+            INDEX=$(( ARTICLE_COUNT % 25 ))
           fi
           echo "使用トピックインデックス: $INDEX"
           npx tsx scripts/generate-article.ts $INDEX
