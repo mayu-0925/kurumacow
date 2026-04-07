@@ -210,5 +210,6 @@
       "type": "service_cta",
       "serviceIndex": 0
     }
-  ]
+  ],
+  "topicIndex": 1
 }

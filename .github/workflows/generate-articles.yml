@@ -38,18 +38,19 @@ jobs:
         run: |
           TODAY=$(date -u '+%Y-%m-%d')
 
-          # 手動実行時は指定インデックス、自動実行時は既存記事数ベースでローテーション
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            INDEX=${{ github.event.inputs.topic_index || '0' }}
-          else
-            # 今日すでに記事が生成済みならスキップ
+          # 手動・自動ともに記事数ベースで次のインデックスを決定
+          # （generate-article.ts 側でも topicIndex 重複チェックを行う）
+          ARTICLE_COUNT=$(ls content/articles/*.json 2>/dev/null | wc -l | tr -d ' ')
+          INDEX=$(( ARTICLE_COUNT % 25 ))
+
+          # 自動実行時: 今日すでに記事が生成済みならスキップ
+          if [ "${{ github.event_name }}" != "workflow_dispatch" ]; then
             if grep -rl "\"publishedAt\": \"$TODAY\"" content/articles/ 2>/dev/null | grep -q .; then
               echo "⏭️ 今日（$TODAY）の記事はすでに生成済みです。スキップします。"
               exit 0
             fi
-            ARTICLE_COUNT=$(ls content/articles/*.json 2>/dev/null | wc -l | tr -d ' ')
-            INDEX=$(( ARTICLE_COUNT % 25 ))
           fi
+
           echo "使用トピックインデックス: $INDEX"
           npx tsx scripts/generate-article.ts $INDEX
 

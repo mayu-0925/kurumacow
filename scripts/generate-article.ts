@@ -150,11 +150,31 @@ ${serviceList}
 // ──────────────────────────────────────────────
 // メイン処理
 // ──────────────────────────────────────────────
+function getUsedTopicIndices(): Set<number> {
+  if (!fs.existsSync(ARTICLES_DIR)) return new Set();
+  const used = new Set<number>();
+  for (const file of fs.readdirSync(ARTICLES_DIR)) {
+    if (!file.endsWith(".json")) continue;
+    try {
+      const data = JSON.parse(fs.readFileSync(path.join(ARTICLES_DIR, file), "utf-8"));
+      if (typeof data.topicIndex === "number") used.add(data.topicIndex);
+    } catch { /* skip */ }
+  }
+  return used;
+}
+
 async function generateArticle(topicIndex: number): Promise<void> {
   const topic = topics[topicIndex];
   if (!topic) {
     console.error(`トピックが見つかりません: index ${topicIndex}`);
     process.exit(1);
+  }
+
+  // 同じトピックの記事が既に存在する場合はスキップ
+  const usedIndices = getUsedTopicIndices();
+  if (usedIndices.has(topicIndex)) {
+    console.log(`⏭️  トピック[${topicIndex}]「${topic.theme}」の記事は既に生成済みです。スキップします。`);
+    process.exit(0);
   }
 
   const today = new Date().toISOString().split("T")[0];
@@ -180,6 +200,7 @@ async function generateArticle(topicIndex: number): Promise<void> {
   }
 
   const article = JSON.parse(match[1]);
+  article.topicIndex = topicIndex;
 
   // スラッグの重複チェック
   let slug = article.slug as string;
