@@ -50,6 +50,7 @@ export type Article = {
   category: string;
   emoji: string;
   publishedAt: string;
+  imageUrl?: string;
   content?: ContentBlock[];
 };
 

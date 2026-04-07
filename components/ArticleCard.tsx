@@ -30,11 +30,21 @@ export default function ArticleCard({
     >
       {/* Thumbnail */}
       <div
-        className={`bg-gradient-to-br from-brand-sky to-brand-sky-dark flex items-center justify-center relative shrink-0 overflow-hidden ${
+        className={`relative shrink-0 overflow-hidden ${
           featured ? "h-[160px] sm:w-[260px] sm:h-auto" : "h-[150px]"
         }`}
       >
-        <span className={featured ? "text-[60px]" : "text-[44px]"}>{article.emoji}</span>
+        {article.imageUrl ? (
+          <img
+            src={article.imageUrl}
+            alt={article.title}
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <div className="w-full h-full bg-gradient-to-br from-brand-sky to-brand-sky-dark flex items-center justify-center">
+            <span className={featured ? "text-[60px]" : "text-[44px]"}>{article.emoji}</span>
+          </div>
+        )}
         <span
           className={`absolute top-2.5 left-2.5 ${catColor} text-white text-[10px] font-bold px-2.5 py-0.5 rounded-xl tracking-wide`}
         >

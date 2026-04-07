@@ -11,6 +11,7 @@ import fs from "fs";
 import path from "path";
 import { topics } from "./topics";
 import { services } from "../lib/data";
+import { generateArticleImage } from "./generate-image";
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
@@ -182,12 +183,23 @@ async function generateArticle(topicIndex: number): Promise<void> {
 
   // スラッグの重複チェック
   let slug = article.slug as string;
+
   let outputPath = path.join(ARTICLES_DIR, `${slug}.json`);
   if (fs.existsSync(outputPath)) {
     slug = `${slug}-${Date.now()}`;
     article.slug = slug;
     outputPath = path.join(ARTICLES_DIR, `${slug}.json`);
     console.log(`⚠️  スラッグが重複したため変更: ${slug}`);
+  }
+
+  // サムネイル画像生成（GOOGLE_AI_API_KEY がある場合のみ）
+  if (process.env.GOOGLE_AI_API_KEY) {
+    const imageUrl = await generateArticleImage(slug, article.title, article.category);
+    if (imageUrl) {
+      article.imageUrl = imageUrl;
+    }
+  } else {
+    console.log("ℹ️  GOOGLE_AI_API_KEY が未設定のため、画像生成をスキップします");
   }
 
   // 保存

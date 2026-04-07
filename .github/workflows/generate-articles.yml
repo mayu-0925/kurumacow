@@ -34,6 +34,7 @@ jobs:
       - name: 記事生成
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GOOGLE_AI_API_KEY: ${{ secrets.GOOGLE_AI_API_KEY }}
         run: |
           TODAY=$(date -u '+%Y-%m-%d')
 
