@@ -7,6 +7,13 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./lib/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist: [
+    "bg-blue-400",
+    "bg-red-400",
+    "bg-green-400",
+    "bg-orange-400",
+    "bg-gray-400",
+  ],
   theme: {
     extend: {
       fontFamily: {
