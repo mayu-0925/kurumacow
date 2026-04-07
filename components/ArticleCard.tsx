@@ -25,13 +25,13 @@ export default function ArticleCard({
     <Link
       href={`/blog/${article.slug}`}
       className={`group bg-white border border-[#dde5f0] rounded-xl overflow-hidden card-pop flex ${
-        featured ? "col-span-2 flex-row" : "flex-col"
+        featured ? "col-span-2 flex-col sm:flex-row" : "flex-col"
       }`}
     >
       {/* Thumbnail */}
       <div
         className={`bg-gradient-to-br from-brand-sky to-brand-sky-dark flex items-center justify-center relative shrink-0 overflow-hidden ${
-          featured ? "w-[260px] min-h-[160px]" : "h-[150px]"
+          featured ? "h-[160px] sm:w-[260px] sm:h-auto" : "h-[150px]"
         }`}
       >
         <span className={featured ? "text-[60px]" : "text-[44px]"}>{article.emoji}</span>
