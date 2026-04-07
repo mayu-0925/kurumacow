@@ -49,7 +49,7 @@ export async function generateArticleImage(
     console.log(`🎨 サムネイル生成中: ${slug}`);
 
     const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash-image",
+      model: "gemini-3.1-flash-image-preview",
       contents: prompt,
       config: {
         responseModalities: ["IMAGE"],
