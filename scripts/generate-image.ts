@@ -35,7 +35,7 @@ Subject: ${categoryHint}
 Context: ${title}
 Style: Clean, modern, high-quality photo-realistic style. Bright lighting. Professional automotive photography aesthetic.
 Colors: Predominantly blue, white, and silver tones. Crisp and trustworthy feeling.
-Composition: Wide 16:9 landscape format. No text or typography in the image. No watermarks.
+Composition: Wide 16:9 landscape format. Absolutely no text, letters, numbers, words, or typography anywhere in the image. No watermarks. No captions.
 Mood: Professional, aspirational, helpful.`;
 }
 
