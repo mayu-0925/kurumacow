@@ -163,18 +163,33 @@ function getUsedTopicIndices(): Set<number> {
   return used;
 }
 
-async function generateArticle(topicIndex: number): Promise<void> {
+function findNextTopicIndex(requested: number): number {
+  const used = getUsedTopicIndices();
+  // 指定インデックスが未使用ならそのまま使う
+  if (!used.has(requested)) return requested;
+  // 使用済みならインデックス0から順に未使用を探す
+  for (let i = 0; i < topics.length; i++) {
+    if (!used.has(i)) return i;
+  }
+  return -1; // 全トピック生成済み
+}
+
+async function generateArticle(requestedIndex: number): Promise<void> {
+  const topicIndex = findNextTopicIndex(requestedIndex);
+
+  if (topicIndex === -1) {
+    console.log("✅ 全トピックの記事が生成済みです。スキップします。");
+    process.exit(0);
+  }
+
+  if (topicIndex !== requestedIndex) {
+    console.log(`ℹ️  トピック[${requestedIndex}]は生成済みのため、次の未使用トピック[${topicIndex}]を使用します。`);
+  }
+
   const topic = topics[topicIndex];
   if (!topic) {
     console.error(`トピックが見つかりません: index ${topicIndex}`);
     process.exit(1);
-  }
-
-  // 同じトピックの記事が既に存在する場合はスキップ
-  const usedIndices = getUsedTopicIndices();
-  if (usedIndices.has(topicIndex)) {
-    console.log(`⏭️  トピック[${topicIndex}]「${topic.theme}」の記事は既に生成済みです。スキップします。`);
-    process.exit(0);
   }
 
   const today = new Date().toISOString().split("T")[0];
