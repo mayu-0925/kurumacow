@@ -5,7 +5,7 @@ import { currentYearMonth } from "@/lib/date";
 
 export const metadata: Metadata = {
   title: "車買取サービス比較ランキング",
-  description: "ガリバー・MOTA車買取・楽天Car買取など主要買取サービスを徹底比較。乗り換え前に一括査定で最高額を引き出す方法を解説。",
+  description: "ユーポス・MOTA車買取・楽天Car買取など主要買取サービスを徹底比較。乗り換え前に一括査定で最高額を引き出す方法を解説。",
 };
 
 export default function RankingPage() {

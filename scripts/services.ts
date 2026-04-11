@@ -39,12 +39,12 @@ export const services: AffiliateService[] = [
   },
   // rankIndex: 2
   {
-    name: "ガリバー 無料査定",
-    label: "中古車・下取り 無料一括査定",
-    description: "全国4,000社以上の業者が競い合う。最大200万円高く売れた実績あり。",
+    name: "ユーポス 無料査定",
+    label: "中古車買取 高価買取に自信あり",
+    description: "独自のオークションネットワークで高値査定を実現。最短即日査定・全国対応。",
     price: "査定は完全無料",
-    point: "最大30社から一括査定",
-    affiliateUrl: "https://example.com/gulliver",       // ← 実際のアフィリエイトURLに差し替え
+    point: "最短即日査定・全国対応",
+    affiliateUrl: "http://www.rentracks.jp/adx/r.html?idx=0.9155.90616.7545.10704&dna=130214",
     ctaText: "無料で査定額を調べる",
     color: "#665e53",
   },

@@ -26,19 +26,19 @@ export const services: ServiceItem[] = [
   },
   {
     rank: 2,
-    name: "ガリバー 無料査定",
-    label: "中古車買取 累計実績No.1",
+    name: "ユーポス 無料査定",
+    label: "中古車買取 高価買取に自信あり",
     description:
-      "全国700店舗以上のガリバーが高額査定。即日現金化も可能で、しつこい営業なし。乗り換えの第一歩におすすめ。",
+      "独自のオークションネットワークで高値査定を実現。最短即日査定・全国対応で、愛車を少しでも高く売りたい方におすすめ。",
     price: "査定は完全無料",
-    point: "即日査定・全国対応",
+    point: "最短即日査定・全国対応",
     tags: [
-      { text: "🏆 買取実績No.1", variant: "cool" },
+      { text: "💰 高価買取に自信", variant: "cool" },
       { text: "💴 完全無料", variant: "green" },
-      { text: "📞 電話なしも可", variant: "gray" },
+      { text: "🚗 最短即日対応", variant: "warm" },
     ],
-    reward: { label: "最大", value: "200万円UP実績" },
-    affiliateUrl: "https://example.com/gulliver", // ← 実際のアフィリエイトURLに差し替え
+    reward: { label: "特徴", value: "独自ネットワークで高値査定" },
+    affiliateUrl: "http://www.rentracks.jp/adx/r.html?idx=0.9155.90616.7545.10704&dna=130214",
     ctaText: "今すぐ無料で査定する",
     ctaColor: "bg-brand-red hover:bg-red-800",
     badgeGradient: "from-brand-red to-red-400",
