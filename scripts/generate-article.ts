@@ -258,9 +258,39 @@ async function generateArticle(requestedIndex: number): Promise<void> {
   console.log(`   タイトル : ${article.title}`);
   console.log(`   カテゴリ : ${article.category}`);
   console.log(`   本文ブロック数: ${(article.content as unknown[]).length}`);
+
+  // IndexNow 通知（デプロイ後に検索エンジンへ通知）
+  await notifyIndexNow(slug);
+
   console.log(`\n次のステップ:`);
   console.log(`  npm run build  → ビルド確認`);
   console.log(`  git add content/articles/${slug}.json && git commit -m "add article" && git push`);
+}
+
+async function notifyIndexNow(slug: string): Promise<void> {
+  const SITE = "https://kurumacow.com";
+  const KEY = "e9c3417bb7fc82edc55185015589377b";
+  const url = `${SITE}/blog/${slug}/`;
+
+  try {
+    const res = await fetch("https://api.indexnow.org/indexnow", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        host: "kurumacow.com",
+        key: KEY,
+        keyLocation: `${SITE}/${KEY}.txt`,
+        urlList: [url],
+      }),
+    });
+    if (res.ok || res.status === 202) {
+      console.log(`🔍 IndexNow 通知送信: ${url} (${res.status})`);
+    } else {
+      console.warn(`⚠️  IndexNow 通知失敗: ${res.status}`);
+    }
+  } catch (err) {
+    console.warn("⚠️  IndexNow 通知エラー（スキップ）:", (err as Error).message);
+  }
 }
 
 // エントリポイント
