@@ -48,4 +48,15 @@ export const services: AffiliateService[] = [
     ctaText: "無料で査定額を調べる",
     color: "#665e53",
   },
+  // rankIndex: 3
+  {
+    name: "セルカ",
+    label: "業界シェア50%超・8,000社が競るオークション",
+    description: "全国8,000社以上のバイヤーが競り合う独自オークション。電話ラッシュなし。累計申込28万件突破。",
+    price: "出品無料・成約手数料33,000円",
+    point: "8,000社以上が競る・業界シェアNo.1",
+    affiliateUrl: "http://www.rentracks.jp/adx/r.html?idx=0.9155.90616.3286.4984&dna=72539",
+    ctaText: "無料でオークション査定する",
+    color: "#2e7d4f",
+  },
 ];
