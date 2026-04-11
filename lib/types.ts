@@ -38,6 +38,10 @@ export type ContentBlock =
       type: "bar_chart";
       title: string;
       items: { label: string; value: number; unit: string; color: string }[];
+    }
+  | {
+      type: "related_articles";
+      items: { slug: string; title: string }[];
     };
 
 // ─────────────────────────────────────────────

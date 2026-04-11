@@ -85,6 +85,19 @@ const SYSTEM_PROMPT = `あなたは自動車業界に10年以上携わる中古�
 // ──────────────────────────────────────────────
 // ユーザープロンプト構築
 // ──────────────────────────────────────────────
+function getExistingArticles(): { slug: string; title: string }[] {
+  if (!fs.existsSync(ARTICLES_DIR)) return [];
+  return fs.readdirSync(ARTICLES_DIR)
+    .filter((f) => f.endsWith(".json"))
+    .map((f) => {
+      try {
+        const a = JSON.parse(fs.readFileSync(path.join(ARTICLES_DIR, f), "utf-8"));
+        return { slug: a.slug as string, title: a.title as string };
+      } catch { return null; }
+    })
+    .filter((a): a is { slug: string; title: string } => a !== null && !!a.slug && !!a.title);
+}
+
 function buildUserPrompt(topic: (typeof topics)[0], today: string): string {
   const serviceList = services
     .map(
@@ -97,6 +110,11 @@ function buildUserPrompt(topic: (typeof topics)[0], today: string): string {
     ? `\n【車両価格・購入費用の参考データ（記事内で必ず活用すること）】\n${topic.priceInfo}\n`
     : "";
 
+  const existingArticles = getExistingArticles();
+  const relatedSection = existingArticles.length > 0
+    ? `\n【内部リンク用・既存記事一覧（関連する記事があれば related_articles ブロックで自然な位置に挿入すること）】\n${existingArticles.map((a) => `- slug: "${a.slug}" | タイトル: ${a.title}`).join("\n")}\n`
+    : "";
+
   return `以下の記事テーマで、自動車アフィリエイト記事を作成してください。
 
 【記事テーマ】
@@ -107,7 +125,7 @@ ${topic.keywords}
 
 【読者の検索意図】
 ${topic.intent}
-${priceSection}
+${priceSection}${relatedSection}
 【推奨するサービス（アフィリエイト誘導先）】
 ${serviceList}
 
@@ -138,7 +156,8 @@ ${serviceList}
     { "type": "definition_list", "items": [{ "term": "名称・項目名", "description": "説明文" }] },
     { "type": "table", "headers": ["比較項目", "サービスA", "サービスB"], "rows": [["月額料金", "〇〇円", "〇〇円"]] },
     { "type": "bar_chart", "title": "グラフタイトル", "items": [{ "label": "項目名", "value": 897, "unit": "Mbps", "color": "bg-blue-400" }] },
-    { "type": "heading3", "text": "小見出し" }
+    { "type": "heading3", "text": "小見出し" },
+    { "type": "related_articles", "items": [{ "slug": "既存記事のslug", "title": "既存記事のタイトル" }] }
   ]
 }
 

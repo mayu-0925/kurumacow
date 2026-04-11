@@ -135,6 +135,25 @@ export default function ArticleBody({ blocks }: { blocks: ContentBlock[] }) {
               </div>
             );
           }
+          case "related_articles": {
+            return (
+              <div key={i} className="bg-blue-50 border border-blue-100 rounded-xl p-4">
+                <p className="text-sm font-bold text-brand-blue mb-3">📎 関連記事</p>
+                <ul className="space-y-2">
+                  {block.items.map((item, j) => (
+                    <li key={j}>
+                      <Link
+                        href={`/blog/${item.slug}/`}
+                        className="text-sm text-brand-blue hover:text-brand-blue-dark underline underline-offset-2 transition"
+                      >
+                        {item.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          }
           default:
             return null;
         }
