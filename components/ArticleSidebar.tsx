@@ -7,26 +7,22 @@ export default function ArticleSidebar({ relatedArticles }: { relatedArticles: A
     <aside className="flex flex-col gap-5">
       {/* アフィリエイトバナー */}
       <div className="bg-gradient-to-br from-brand-blue-dark to-brand-blue-light rounded-xl p-5 text-center shadow-[0_4px_20px_rgba(70,130,180,0.14)]">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/uploads/2016/04/harrier.png"
-          alt=""
-          className="w-full h-[100px] object-contain rounded-lg mb-3 bg-white/15 p-1"
-        />
+        <div className="text-4xl mb-2">🔍</div>
         <h3 className="text-[14px] font-bold text-white mb-2 leading-[1.5]">
-          🚗 カーリース無料一括見積もり
+          愛車の概算査定額を<br />今すぐ無料チェック
         </h3>
         <p className="text-[11px] text-white/88 mb-3 leading-[1.6]">
-          月々定額で新車に乗れる。頭金0円・税金込みの主要サービスを無料で比較
+          最大20社がWEB上で入札。数十社からの電話ラッシュなし※で、乗り換え前の相場確認に最適。
         </p>
         <Link
           href={services[0].affiliateUrl}
           target="_blank"
-          rel="noopener noreferrer"
+          rel="nofollow noopener noreferrer"
           className="inline-block bg-white text-brand-blue-dark font-bold text-[13px] px-4 py-2 rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.12)] hover:-translate-y-0.5 transition"
         >
-          今すぐ無料で比較する
+          無料で概算査定額を調べる
         </Link>
+        <p className="text-[10px] text-white/60 mt-2">※最多で上位3社からの電話はあります</p>
       </div>
 
       {/* おすすめサービスランキング */}
