@@ -31,22 +31,40 @@ jobs:
       - name: 依存関係インストール
         run: npm ci
 
-      - name: 記事生成
+      - name: 記事生成（1記事目）
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GOOGLE_AI_API_KEY: ${{ secrets.GOOGLE_AI_API_KEY }}
         run: |
           TODAY=$(date -u '+%Y-%m-%d')
 
-          # 自動実行時: 今日すでに記事が生成済みならスキップ
+          # 自動実行時: 今日すでに2記事以上生成済みならスキップ
           if [ "${{ github.event_name }}" != "workflow_dispatch" ]; then
-            if grep -rl "\"publishedAt\": \"$TODAY\"" content/articles/ 2>/dev/null | grep -q .; then
-              echo "⏭️ 今日（$TODAY）の記事はすでに生成済みです。スキップします。"
+            COUNT=$(grep -rl "\"publishedAt\": \"$TODAY\"" content/articles/ 2>/dev/null | wc -l | tr -d ' ')
+            if [ "$COUNT" -ge 2 ]; then
+              echo "⏭️ 今日（$TODAY）の記事はすでに${COUNT}件生成済みです。スキップします。"
               exit 0
             fi
           fi
 
-          # インデックスはスクリプト側で未使用トピックを自動選択する
+          npx tsx scripts/generate-article.ts 0
+
+      - name: 記事生成（2記事目）
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GOOGLE_AI_API_KEY: ${{ secrets.GOOGLE_AI_API_KEY }}
+        run: |
+          TODAY=$(date -u '+%Y-%m-%d')
+
+          # 自動実行時: 今日すでに2記事以上生成済みならスキップ
+          if [ "${{ github.event_name }}" != "workflow_dispatch" ]; then
+            COUNT=$(grep -rl "\"publishedAt\": \"$TODAY\"" content/articles/ 2>/dev/null | wc -l | tr -d ' ')
+            if [ "$COUNT" -ge 2 ]; then
+              echo "⏭️ 今日（$TODAY）の記事はすでに${COUNT}件生成済みです。スキップします。"
+              exit 0
+            fi
+          fi
+
           npx tsx scripts/generate-article.ts 0
 
       - name: 変更をコミット・プッシュ
