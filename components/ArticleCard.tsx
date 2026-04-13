@@ -3,13 +3,17 @@ import type { Article } from "@/lib/types";
 
 const catColors: Record<string, string> = {
   "EV": "bg-[#2e7d4f]",
-  "自動車保険": "bg-brand-red",
+  "自動車保険": "bg-[#2e7d4f]",
   "ランキング": "bg-[#856000]",
   "ミニバン": "bg-[#7b2d8b]",
   "カーリース": "bg-brand-blue",
   "SUV": "bg-brand-blue-dark",
   "中古車": "bg-brand-warm",
   "節約術": "bg-[#2e7d4f]",
+  "一括査定": "bg-brand-blue",
+  "車買取": "bg-brand-blue-dark",
+  "乗り換え": "bg-[#856000]",
+  "査定コツ": "bg-brand-warm",
 };
 
 export default function ArticleCard({

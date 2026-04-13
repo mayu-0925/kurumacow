@@ -62,6 +62,25 @@ export const services: ServiceItem[] = [
     ctaColor: "bg-brand-warm hover:bg-amber-800",
     badgeGradient: "from-brand-warm to-amber-500",
   },
+  {
+    rank: 4,
+    name: "インズウェブ 自動車保険一括見積もり",
+    label: "最大20社以上を無料で一括比較",
+    description:
+      "1分の入力で最大20社以上の保険料を一括比較。乗り換えのタイミングで保険も見直せば、さらに節約できます。",
+    price: "見積もり・比較は完全無料",
+    point: "最大20社以上を一括比較",
+    tags: [
+      { text: "🛡️ 最大20社比較", variant: "cool" },
+      { text: "💴 完全無料", variant: "green" },
+      { text: "⏱️ 1分で入力完了", variant: "warm" },
+    ],
+    reward: { label: "節約", value: "保険料の見直しで節約" },
+    affiliateUrl: "https://px.a8.net/svt/ejp?a8mat=2NK3XR+G9UMCQ+2PS+15RCDE",
+    ctaText: "無料で保険料を比較する",
+    ctaColor: "bg-[#2e7d4f] hover:bg-green-800",
+    badgeGradient: "from-[#2e7d4f] to-green-400",
+  },
 ];
 
 // ─────────────────────────────────────────────

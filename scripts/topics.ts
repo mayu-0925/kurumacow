@@ -9,6 +9,7 @@ export type Topic = {
   keywords: string;
   intent: string;
   priceInfo?: string;
+  insuranceArticle?: boolean;
 };
 
 export const topics: Topic[] = [
@@ -186,5 +187,44 @@ export const topics: Topic[] = [
     keywords: "セレナ 年収 購入 ローン ミニバン 維持費 乗り換え",
     intent: "セレナへの乗り換えを検討しており年収・費用感を知りたいユーザー",
     priceInfo: "新車価格：271万円〜484万円（代表グレードXV：298万〜325万円）。e-POWER搭載で燃費も良く年収400万円台から購入しやすいミニバン。",
+  },
+
+  // ── 自動車保険特化 ─────────────────────────────────────────────
+
+  {
+    theme: "自動車保険を安くする方法【一括見積もりで保険料を節約】2026年版",
+    keywords: "自動車保険 安くする 一括見積もり 節約 比較",
+    intent: "自動車保険の保険料を下げたいユーザー",
+    insuranceArticle: true,
+  },
+  {
+    theme: "自動車保険おすすめランキング2026年【一括見積もりで徹底比較】",
+    keywords: "自動車保険 おすすめ ランキング 2026 比較 一括見積もり",
+    intent: "自動車保険を比較して最適なプランを選びたいユーザー",
+    insuranceArticle: true,
+  },
+  {
+    theme: "車の乗り換えで自動車保険はどうなる？等級引き継ぎと見直しのコツ",
+    keywords: "乗り換え 自動車保険 等級 引き継ぎ 見直し 節約",
+    intent: "乗り換え時に自動車保険をどう扱えばいいか知りたいユーザー",
+    insuranceArticle: true,
+  },
+  {
+    theme: "任意保険と車両保険の違いは？必要な補償を安く選ぶ方法",
+    keywords: "任意保険 車両保険 違い 補償 選び方 安くする",
+    intent: "保険の種類・補償内容を理解して最適なプランを選びたいユーザー",
+    insuranceArticle: true,
+  },
+  {
+    theme: "新車購入時の自動車保険の選び方【乗り換えで保険も見直し】",
+    keywords: "新車 自動車保険 選び方 乗り換え 見直し 比較",
+    intent: "新車購入・乗り換えのタイミングで保険も見直したいユーザー",
+    insuranceArticle: true,
+  },
+  {
+    theme: "20代・30代におすすめの自動車保険【若者向け安い保険の選び方】",
+    keywords: "20代 30代 自動車保険 安い おすすめ 若者 選び方",
+    intent: "若年層が自動車保険を安く抑えたいユーザー",
+    insuranceArticle: true,
   },
 ];
