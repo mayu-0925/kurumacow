@@ -19,6 +19,7 @@ export type ServiceItem = {
   ctaText: string;
   ctaColor: string;
   badgeGradient: string;
+  category?: "car_buying" | "insurance";
 };
 
 // ─────────────────────────────────────────────

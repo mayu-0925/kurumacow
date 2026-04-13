@@ -1,5 +1,7 @@
 import Link from "next/link";
-import { services } from "@/lib/data";
+import { services as allServices } from "@/lib/data";
+
+const services = allServices.filter((s) => s.category !== "insurance");
 import type { Article } from "@/lib/types";
 
 export default function ArticleSidebar({ relatedArticles }: { relatedArticles: Article[] }) {

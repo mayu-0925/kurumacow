@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import ServiceCard from "@/components/ServiceCard";
-import { services } from "@/lib/data";
+import { services as allServices } from "@/lib/data";
+
+const services = allServices.filter((s) => s.category !== "insurance");
 import { currentYearMonth } from "@/lib/date";
 
 export const metadata: Metadata = {

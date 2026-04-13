@@ -23,6 +23,7 @@ export const services: ServiceItem[] = [
     ctaText: "無料で概算査定額を調べる",
     ctaColor: "bg-brand-blue hover:bg-brand-blue-dark",
     badgeGradient: "from-brand-blue-dark to-brand-blue-light",
+    category: "car_buying",
   },
   {
     rank: 2,
@@ -42,6 +43,7 @@ export const services: ServiceItem[] = [
     ctaText: "今すぐ無料で査定する",
     ctaColor: "bg-brand-red hover:bg-red-800",
     badgeGradient: "from-brand-red to-red-400",
+    category: "car_buying",
   },
   {
     rank: 3,
@@ -61,6 +63,7 @@ export const services: ServiceItem[] = [
     ctaText: "無料でオークション査定する",
     ctaColor: "bg-brand-warm hover:bg-amber-800",
     badgeGradient: "from-brand-warm to-amber-500",
+    category: "car_buying",
   },
   {
     rank: 4,
@@ -80,6 +83,7 @@ export const services: ServiceItem[] = [
     ctaText: "無料で保険料を比較する",
     ctaColor: "bg-[#2e7d4f] hover:bg-green-800",
     badgeGradient: "from-[#2e7d4f] to-green-400",
+    category: "insurance",
   },
 ];
 
