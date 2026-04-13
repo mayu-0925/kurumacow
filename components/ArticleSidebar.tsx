@@ -8,8 +8,14 @@ export default function ArticleSidebar({ relatedArticles }: { relatedArticles: A
   return (
     <aside className="flex flex-col gap-5">
       {/* アフィリエイトバナー */}
-      <div className="bg-gradient-to-br from-brand-blue-dark to-brand-blue-light rounded-xl p-5 text-center shadow-[0_4px_20px_rgba(70,130,180,0.14)]">
-        <div className="text-4xl mb-2">🔍</div>
+      <div className="bg-gradient-to-br from-brand-blue-dark to-brand-blue-light rounded-xl overflow-hidden text-center shadow-[0_4px_20px_rgba(70,130,180,0.14)]">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/sidebar-banner.jpg"
+          alt="愛車の概算査定額を今すぐ無料チェック"
+          className="w-full h-[140px] object-cover"
+        />
+        <div className="p-5 pt-4">
         <h3 className="text-[14px] font-bold text-white mb-2 leading-[1.5]">
           愛車の概算査定額を<br />今すぐ無料チェック
         </h3>
@@ -25,6 +31,7 @@ export default function ArticleSidebar({ relatedArticles }: { relatedArticles: A
           無料で概算査定額を調べる
         </Link>
         <p className="text-[10px] text-white/60 mt-2">※最多で上位3社からの電話はあります</p>
+        </div>
       </div>
 
       {/* おすすめサービスランキング */}
