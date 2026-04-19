@@ -260,8 +260,14 @@ async function generateArticle(requestedIndex: number): Promise<void> {
   const article = JSON.parse(match[1]);
   article.topicIndex = topicIndex;
 
-  // スラッグの重複チェック
-  let slug = article.slug as string;
+  // スラッグの日本語・特殊文字を除去（英小文字・数字・ハイフンのみ許可）
+  let slug = (article.slug as string)
+    .replace(/[^\x00-\x7F]/g, "")
+    .replace(/[^a-z0-9-]/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "")
+    || `article-${Date.now()}`;
+  article.slug = slug;
 
   let outputPath = path.join(ARTICLES_DIR, `${slug}.json`);
   if (fs.existsSync(outputPath)) {
