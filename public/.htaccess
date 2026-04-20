@@ -39,4 +39,4 @@ RewriteRule ^new/newcar/[0-9]+/?$ https://kurumacow.com/blog/ [R=301,L]
 RewriteRule ^new/[0-9]+/?$ https://kurumacow.com/blog/ [R=301,L]
 
 # 日本語スラッグを含む壊れたURL
-Redirect 301 /blog/car-sell-tax-return-%E8%AD%B2%E6%B8%A1%E6%89%80%E5%BE%97-guide/ https://kurumacow.com/blog/
+Redirect 301 /blog/car-sell-tax-return-%E8%AD%B2%E6%B8%A1%E6%89%80%E5%BE%97-guide/ https://kurumacow.com/blog/car-sell-tax-return-capital-gains-guide/
