@@ -21,11 +21,13 @@ export default function ServiceCard({ service, priority = false }: { service: Se
       />
 
       {/* 順位バッジ */}
-      <div
-        className={`absolute top-3 left-4 px-3 py-0.5 rounded-full text-white text-[10px] font-black shadow bg-gradient-to-r ${service.badgeGradient}`}
-      >
-        第{service.rank}位
-      </div>
+      {service.category !== "insurance" && (
+        <div
+          className={`absolute top-3 left-4 px-3 py-0.5 rounded-full text-white text-[10px] font-black shadow bg-gradient-to-r ${service.badgeGradient}`}
+        >
+          第{service.rank}位
+        </div>
+      )}
 
       <div className="p-5 pt-8">
         <div className="flex items-start justify-between gap-3 mb-2">
