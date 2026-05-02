@@ -159,6 +159,13 @@ ${topic.insuranceArticle ? `【記事構成の必須要件】
 - 読者が「この記事を読んで損した」と感じない情報密度を保つ
 - 記事の末尾付近に必ずFAQブロック（よくある質問）を1つ設置する（3〜5問）
 
+【体験談ブロック（experience）の必須要件】
+- 記事内に必ず1〜2箇所、experienceブロックを自然な位置に配置する
+- 編集部または著者が実際にサービスを使った・調査した体験として書く
+- 具体的な数値を含める（例：査定額の差額、所要時間、電話件数、比較社数など）
+- 「です。ます。」調の一人称で、リアルで参考になる内容にする
+- resultフィールドには結果を簡潔に1文で書く（例：「ディーラー下取りより17万円高い査定額が提示されました」）
+
 【出力形式】
 以下のJSON形式のみで出力してください。コードブロック（\`\`\`json）で囲むこと。
 
@@ -181,7 +188,8 @@ ${topic.insuranceArticle ? `【記事構成の必須要件】
     { "type": "bar_chart", "title": "グラフタイトル", "items": [{ "label": "項目名", "value": 897, "unit": "Mbps", "color": "bg-blue-400" }] },
     { "type": "heading3", "text": "小見出し" },
     { "type": "related_articles", "items": [{ "slug": "既存記事のslug", "title": "既存記事のタイトル" }] },
-    { "type": "faq", "items": [{ "question": "よくある質問の文章", "answer": "回答文（です。ます。調・2〜4文）" }] }
+    { "type": "faq", "items": [{ "question": "よくある質問の文章", "answer": "回答文（です。ます。調・2〜4文）" }] },
+    { "type": "experience", "text": "編集部の体験談（です。ます。調・2〜4文・具体的な数値を含む）", "result": "結果を1文で（省略可）" }
   ]
 }
 
@@ -271,6 +279,7 @@ async function generateArticle(requestedIndex: number): Promise<void> {
 
   const article = JSON.parse(match[1]);
   article.topicIndex = topicIndex;
+  article.authorId = topic.insuranceArticle ? "sato-misaki" : "yamada-kenta";
 
   // related_articles を既存記事のみに絞り込む
   const existingSlugs = getExistingSlugs();

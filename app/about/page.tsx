@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "このサイトについて",
-  robots: { index: false },
+  title: "このサイトについて | KurumaCow",
+  description: "KurumaCow（クルマカウ）は、車買取・自動車保険などのカーライフサービスを比較・紹介するアフィリエイトメディアです。",
 };
 
 export default function AboutPage() {

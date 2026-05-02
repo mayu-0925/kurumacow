@@ -43,6 +43,15 @@ export type ContentBlock =
   | {
       type: "related_articles";
       items: { slug: string; title: string }[];
+    }
+  | {
+      type: "faq";
+      items: { question: string; answer: string }[];
+    }
+  | {
+      type: "experience";
+      text: string;
+      result?: string;
     };
 
 // ─────────────────────────────────────────────
@@ -56,6 +65,7 @@ export type Article = {
   emoji: string;
   publishedAt: string;
   imageUrl?: string;
+  authorId?: string;
   content?: ContentBlock[];
 };
 

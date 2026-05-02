@@ -154,6 +154,44 @@ export default function ArticleBody({ blocks }: { blocks: ContentBlock[] }) {
               </div>
             );
           }
+          case "experience": {
+            return (
+              <div key={i} className="bg-amber-50 border border-amber-200 rounded-xl p-4">
+                <p className="text-xs font-bold text-amber-700 mb-2 flex items-center gap-1.5">
+                  <span>💬</span> 編集部の実体験
+                </p>
+                <p className="text-sm text-gray-800 leading-relaxed italic">「{block.text}」</p>
+                {block.result && (
+                  <div className="mt-3 flex items-center gap-2">
+                    <span className="text-xs font-bold text-white bg-amber-600 px-2 py-0.5 rounded-full shrink-0">結果</span>
+                    <span className="text-sm font-bold text-amber-800">{block.result}</span>
+                  </div>
+                )}
+              </div>
+            );
+          }
+          case "faq": {
+            return (
+              <div key={i} className="space-y-3">
+                <p className="text-base font-bold text-gray-900 flex items-center gap-2">
+                  <span className="text-brand-blue">❓</span>よくある質問
+                </p>
+                {block.items.map((item, j) => (
+                  <details key={j} className="border border-gray-200 rounded-xl overflow-hidden group">
+                    <summary className="flex items-center justify-between px-4 py-3 cursor-pointer bg-gray-50 hover:bg-blue-50 transition list-none">
+                      <span className="font-bold text-sm text-gray-900 flex gap-2">
+                        <span className="text-brand-blue shrink-0">Q.</span>{item.question}
+                      </span>
+                      <span className="text-brand-blue shrink-0 ml-2 text-xs">▼</span>
+                    </summary>
+                    <div className="px-4 py-3 text-sm text-gray-700 leading-relaxed border-t border-gray-100 bg-white">
+                      <span className="text-brand-blue font-bold mr-1">A.</span>{item.answer}
+                    </div>
+                  </details>
+                ))}
+              </div>
+            );
+          }
           default:
             return null;
         }
