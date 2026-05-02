@@ -105,6 +105,10 @@ function getExistingArticles(): { slug: string; title: string }[] {
     .filter((a): a is { slug: string; title: string } => a !== null && !!a.slug && !!a.title);
 }
 
+function getExistingSlugs(): Set<string> {
+  return new Set(getExistingArticles().map((a) => a.slug));
+}
+
 function buildUserPrompt(topic: (typeof topics)[0], today: string): string {
   const serviceList = services
     .map(
@@ -148,13 +152,20 @@ ${topic.insuranceArticle ? `【記事構成の必須要件】
 4. 末尾のまとめの直前に service_cta（serviceIndex: 0）を挿入
 5. まとめセクションで推奨サービスへの申し込みを自然にクロージング`}
 
+【記事の分量・品質要件】
+- 本文の合計文字数は2,500文字以上を目標にする
+- 見出し（heading2）は5〜8個用意し、各セクションに十分な情報量を持たせる
+- 具体的な数値・金額・年式・車名を積極的に盛り込む
+- 読者が「この記事を読んで損した」と感じない情報密度を保つ
+- 記事の末尾付近に必ずFAQブロック（よくある質問）を1つ設置する（3〜5問）
+
 【出力形式】
 以下のJSON形式のみで出力してください。コードブロック（\`\`\`json）で囲むこと。
 
 {
   "slug": "記事のURLスラッグ（英小文字・ハイフン区切り）",
   "title": "記事タイトル（32文字以内・キーワードを含む）",
-  "excerpt": "記事の要約（60文字以内・検索結果に表示される説明文）",
+  "excerpt": "記事の要約（120文字以内・検索結果に表示される説明文・キーワードを自然に含める）",
   "category": "カテゴリ名（車買取 / 乗り換え / 査定コツ / 一括査定 / 軽自動車 / SUV / EV / 節約術 / 自動車保険 のいずれか）",
   "emoji": "記事内容に合う絵文字1つ",
   "publishedAt": "${today}",
@@ -169,18 +180,19 @@ ${topic.insuranceArticle ? `【記事構成の必須要件】
     { "type": "table", "headers": ["比較項目", "サービスA", "サービスB"], "rows": [["月額料金", "〇〇円", "〇〇円"]] },
     { "type": "bar_chart", "title": "グラフタイトル", "items": [{ "label": "項目名", "value": 897, "unit": "Mbps", "color": "bg-blue-400" }] },
     { "type": "heading3", "text": "小見出し" },
-    { "type": "related_articles", "items": [{ "slug": "既存記事のslug", "title": "既存記事のタイトル" }] }
+    { "type": "related_articles", "items": [{ "slug": "既存記事のslug", "title": "既存記事のタイトル" }] },
+    { "type": "faq", "items": [{ "question": "よくある質問の文章", "answer": "回答文（です。ます。調・2〜4文）" }] }
   ]
 }
 
-【MOTA車買取に関する表記ルール（厳守）】
-- 「最大20社」と表記する（45社は誤り）
-- 「電話ラッシュなし」は必ず「数十社からの電話ラッシュなし（※最多で上位3社からの電話はあります）」と注釈付きで書く
-- 「査定額」ではなく「概算査定額」と表記する
-- 「最高額で売れる」「必ず高値で売れる」などの断定表現は使わない
+【車選びドットコム買取に関する表記ルール（厳守）】
+- 「全国300社以上から最大10社を比較」と表記する
+- 複数社から電話が来る可能性があることを正直に書く（「複数の買取業者から連絡が届きます」）
+- 「必ず高値で売れる」などの断定表現は使わない
 - 「高値で売ろう」「高く売りたい方へ」などの訴求表現はOK
-- 「平均〇万円UP」「平均〇〇円高く売れた」など具体的な金額を根拠なく記載しない
+- 「平均〇万円UP」など具体的な金額を根拠なく記載しない
 - 数値を使う場合は「ディーラー下取りより高値になるケースが多い」などの表現にとどめる
+- 利用は完全無料・売却は任意という安心感を自然に盛り込む
 
 【表・グラフの使用ガイドライン】
 - table と bar_chart は必要な記事にだけ使う
@@ -259,6 +271,21 @@ async function generateArticle(requestedIndex: number): Promise<void> {
 
   const article = JSON.parse(match[1]);
   article.topicIndex = topicIndex;
+
+  // related_articles を既存記事のみに絞り込む
+  const existingSlugs = getExistingSlugs();
+  if (Array.isArray(article.content)) {
+    for (const block of article.content) {
+      if (block.type === "related_articles" && Array.isArray(block.items)) {
+        block.items = block.items.filter((item: { slug: string }) => existingSlugs.has(item.slug));
+      }
+    }
+    // items が空になった related_articles ブロックを除去
+    article.content = article.content.filter(
+      (block: { type: string; items?: unknown[] }) =>
+        block.type !== "related_articles" || (Array.isArray(block.items) && block.items.length > 0)
+    );
+  }
 
   // スラッグの日本語・特殊文字を除去（英小文字・数字・ハイフンのみ許可）
   let slug = (article.slug as string)

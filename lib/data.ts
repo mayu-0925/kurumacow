@@ -7,20 +7,20 @@ import type { ServiceItem, SiteAlert, HeroStat, HowToStep } from "./types";
 export const services: ServiceItem[] = [
   {
     rank: 1,
-    name: "MOTA車買取",
-    label: "一括査定 最大20社がWEB上で入札",
+    name: "車選びドットコム買取",
+    label: "全国300社以上・最大10社を無料比較",
     description:
-      "入力1分・翌日には上位3社から連絡が来るシステム。数十社からの電話ラッシュなし※最多で上位3社からの電話はあります。",
-    price: "無料で概算査定額を確認",
-    point: "最大20社がWEB上で入札・3枠争奪戦",
+      "全国300社以上の買取店から最大10社の査定額をまとめて比較。完全無料で利用でき、売却は任意なので気軽に相場確認できます。",
+    price: "査定・利用は完全無料",
+    point: "300社以上から最大10社を比較",
     tags: [
-      { text: "📱 入力1分", variant: "cool" },
-      { text: "🆚 最大20社が入札", variant: "green" },
-      { text: "📞 鬼電なし※", variant: "warm" },
+      { text: "🏢 全国300社以上", variant: "cool" },
+      { text: "🆚 最大10社を比較", variant: "green" },
+      { text: "💴 完全無料", variant: "warm" },
     ],
     reward: { label: "実績", value: "ディーラー下取りより高値" },
-    affiliateUrl: "https://example.com/mota", // ← 実際のアフィリエイトURLに差し替え
-    ctaText: "無料で概算査定額を調べる",
+    affiliateUrl: "http://www.rentracks.jp/adx/r.html?idx=0.9155.90616.9768.13908&dna=160810",
+    ctaText: "無料で買取相場を調べる",
     ctaColor: "bg-brand-blue hover:bg-brand-blue-dark",
     badgeGradient: "from-brand-blue-dark to-brand-blue-light",
     category: "car_buying",
@@ -92,16 +92,16 @@ export const services: ServiceItem[] = [
 // ─────────────────────────────────────────────
 export const siteAlert: SiteAlert = {
   message:
-    "🔥 愛車の概算査定額を無料チェック！乗り換え前に必ず査定を。最大20社がWEB上で入札",
+    "🔥 愛車の買取相場を無料チェック！全国300社以上から最大10社を比較できます",
   linkText: "今すぐ無料で確認 →",
-  linkHref: "https://example.com/mota",
+  linkHref: "http://www.rentracks.jp/adx/r.html?idx=0.9155.90616.9768.13908&dna=160810",
 };
 
 // ─────────────────────────────────────────────
 // ヒーロー統計
 // ─────────────────────────────────────────────
 export const heroStats: HeroStat[] = [
-  { value: "最大45社", label: "一括査定比較", color: "text-brand-sky" },
+  { value: "最大10社", label: "一括査定比較", color: "text-brand-sky" },
   { value: "完全無料", label: "査定・手続き", color: "text-brand-sky" },
   { value: "最短即日", label: "現金化も可能", color: "text-brand-sky" },
 ];
