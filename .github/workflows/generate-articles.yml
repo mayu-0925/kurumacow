@@ -78,6 +78,7 @@ jobs:
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
           git add content/articles/ public/images/articles/
           git diff --staged --quiet || git commit -m "chore: 記事自動生成 $(date '+%Y-%m-%d')"
+          git pull --rebase origin main
           git push
 
       - name: ビルド
