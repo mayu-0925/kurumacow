@@ -9,6 +9,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
       - name: チェックアウト
@@ -17,7 +19,7 @@ jobs:
       - name: Node.js セットアップ
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "24"
           cache: "npm"
 
       - name: 依存関係インストール
@@ -26,11 +28,22 @@ jobs:
       - name: ビルド
         run: npm run build
 
-      - name: FTP デプロイ
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: ${{ secrets.FTP_SERVER_DIR }}
-          local-dir: ./out/
+      - name: lftp インストール
+        run: sudo apt-get install -y lftp
+
+      - name: FTP デプロイ (Xserver)
+        env:
+          FTP_SERVER: ${{ secrets.FTP_HOST }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
+        run: |
+          lftp -u "$FTP_USERNAME","$FTP_PASSWORD" "ftp://$FTP_SERVER" <<EOF
+          set net:timeout 120
+          set net:max-retries 5
+          set net:reconnect-interval-base 5
+          set ftp:passive-mode on
+          set mirror:parallel-transfer-count 4
+          mirror --reverse --delete --verbose --no-perms --exclude '.DS_Store' ./out/ $FTP_SERVER_DIR
+          quit
+          EOF
