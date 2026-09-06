@@ -4,12 +4,7 @@ on:
   schedule:
     # 毎日 9:00 JST (= 0:00 UTC) に実行
     - cron: "0 0 * * *"
-  workflow_dispatch:
-    inputs:
-      topic_index:
-        description: "トピックのインデックス番号 (0〜24)"
-        required: false
-        default: "0"
+  workflow_dispatch: {}
 
 permissions:
   contents: write
@@ -49,7 +44,7 @@ jobs:
             fi
           fi
 
-          npx tsx scripts/generate-article.ts 0
+          npx tsx scripts/generate-article.ts
 
       - name: 記事生成（2記事目）
         env:
@@ -67,7 +62,7 @@ jobs:
             fi
           fi
 
-          npx tsx scripts/generate-article.ts 0
+          npx tsx scripts/generate-article.ts
 
       - name: 変更をコミット・プッシュ
         env:
